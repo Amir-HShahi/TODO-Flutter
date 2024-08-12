@@ -176,14 +176,14 @@ class signUp extends StatelessWidget {
                       style: Theme.of(context).textTheme.bodyMedium,
                     )),
 
-                SizedBox(height: size.height/21.1,),
+                SizedBox(height: size.height / 21.1,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Already have an account ?",
                         style: Theme.of(context).textTheme.bodySmall),
-                    TextButton(
-                        onPressed: () {
+                    GestureDetector(
+                        onTap: () {
                           // sign in push
                         },
                         child: Text(
