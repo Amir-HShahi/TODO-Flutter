@@ -27,7 +27,7 @@ class signUp extends StatelessWidget {
                       IconButton(
                           onPressed: () => Navigator.pop(context),
                           icon: const ImageIcon(
-                            AssetImage("assets/images/backimg.png"),
+                            AssetImage("assets/images/back_arrow_image.png"),
                             size: 34,
                           )),
                     ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/view/add_to_do_screen.dart';
 
 import 'View/home_screen.dart';
 
@@ -52,7 +53,7 @@ class MyApp extends StatelessWidget {
       home: const Scaffold(
           backgroundColor: Color.fromARGB(255, 237, 237, 237),
           body: Center(
-            child: HomeScreen(),
+            child: AddToDoScreen(),
           ))
     );
   }
