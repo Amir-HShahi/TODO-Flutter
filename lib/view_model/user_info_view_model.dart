@@ -7,6 +7,13 @@ class UserInfoViewModel with ChangeNotifier {
       email: "initialEmail",
       password: "initialPassword");
 
+  void signUpUser(
+      String fullName, String email, String password, String confirmPassword) {
+    setFullName(fullName);
+    setEmail(email);
+    setPassword(password, confirmPassword);
+  }
+
   void setFullName(String name) {
     _userInfoModel.fullName = name;
   }
@@ -15,7 +22,7 @@ class UserInfoViewModel with ChangeNotifier {
     _userInfoModel.email = email;
   }
 
-  void setPassword(String password) {
+  void setPassword(String password, String confirmPassword) {
     _userInfoModel.password = password;
   }
 

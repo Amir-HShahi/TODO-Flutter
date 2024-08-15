@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:todolist/view/components/text_fields.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,5 +5,5 @@ import 'package:todolist/view/sign_up_screen.dart';
 var routesData = {
   "/AddToDoScreen": (context) => AddToDoScreen(),
   "/DashboardScreen": (context) => const DashboardScreen(),
-  "/SignUpScreen": (context) => const SignUpScreen()
+  "/SignUpScreen": (context) => SignUpScreen()
 };
