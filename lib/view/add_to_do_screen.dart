@@ -18,7 +18,9 @@ class AddToDoScreen extends StatelessWidget {
     }
 
     void pressAddToListHandler() {
-      viewModel.addToDo(initialToDoModel.text);
+      if (initialToDoModel.text != "") {
+        viewModel.addToDo(initialToDoModel.text);
+      }
       Navigator.pop(context);
     }
 

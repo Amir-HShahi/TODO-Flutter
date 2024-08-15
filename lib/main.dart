@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/view/add_to_do_screen.dart';
 import 'package:todolist/view/dashboard_screen.dart';
+import 'package:todolist/view/home_screen.dart';
+import 'package:todolist/view/sign_up_screen.dart';
 import 'package:todolist/view_model/to_do_view_model.dart';
 
 void main() {
@@ -55,12 +57,12 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: Color.fromARGB(255, 85, 132, 122)),
           )),
-      home: const Scaffold(
-          backgroundColor: Color.fromARGB(255, 237, 237, 237),
-          body: Center(
-            child: DashboardScreen(),
-          )),
-      routes: {"/AddToDoScreen": (context) => AddToDoScreen()},
+      home: const HomeScreen(),
+      routes: {
+        "/AddToDoScreen": (context) => AddToDoScreen(),
+        "/DashboardScreen": (context) => const DashboardScreen(),
+        "/SignUpScreen": (context) => const SignUpScreen()
+      },
     );
   }
 }
