@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
 class UserInfoModel with ChangeNotifier {
-  final String fullName;
-  final String email;
-  final String password;
+  String fullName;
+  String email;
+  String password;
   ImageProvider? profileImage;
 
   UserInfoModel(

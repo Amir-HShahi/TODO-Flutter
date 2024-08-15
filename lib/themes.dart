@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-var themeData = ThemeData(
+var themesData = ThemeData(
     fontFamily: "poppins",
     textTheme: const TextTheme(
       titleLarge: TextStyle(
