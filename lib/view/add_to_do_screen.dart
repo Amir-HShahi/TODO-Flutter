@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/model/to_do_model.dart';
 import 'package:todolist/view/components/add_to_list_widget.dart';
 import 'package:todolist/view/components/to_do_input_field_widget.dart';
 import 'package:todolist/view_model/to_do_view_model.dart';
 
 class AddToDoScreen extends StatelessWidget {
-  final initialToDoModel = ToDoModel(text: "");
+  final textEditingController = TextEditingController();
   AddToDoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var viewModel = context.watch<ToDoViewModel>();
 
-    void onChangedHandler(String text) {
-      initialToDoModel.text = text;
-    }
-
     void pressAddToListHandler() {
-      if (initialToDoModel.text != "") {
-        viewModel.addToDo(initialToDoModel.text);
+      if (textEditingController.text != "") {
+        viewModel.addToDo(textEditingController.text);
       }
       Navigator.pop(context);
     }
@@ -79,7 +74,8 @@ class AddToDoScreen extends StatelessWidget {
               Text("Add What your want to do later on..",
                   style: getTextThemes().titleSmall),
               SizedBox(height: scaledHeight(0.04)),
-              ToDoInputFieldWidget(onChanged: onChangedHandler),
+              ToDoInputFieldWidget(
+                  textEditingController: textEditingController),
               SizedBox(height: scaledHeight(0.2)),
               AddToListWidget(onPressed: pressAddToListHandler)
             ],

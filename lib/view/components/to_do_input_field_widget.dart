@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ToDoInputFieldWidget extends StatelessWidget {
-  final Function(String text) onChanged;
-  const ToDoInputFieldWidget({super.key, required this.onChanged});
-
+  final TextEditingController textEditingController;
+  const ToDoInputFieldWidget(
+      {super.key,
+      required this.textEditingController});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class ToDoInputFieldWidget extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: TextField(
-        onChanged: onChanged,
+        controller: textEditingController,
         style: getTextThemes().headlineSmall,
         decoration: InputDecoration(
             filled: true,
