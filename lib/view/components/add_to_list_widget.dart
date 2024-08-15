@@ -20,12 +20,15 @@ class AddToListWidget extends StatelessWidget {
       return (screenSize.width * scale);
     }
 
-    return Container(
-      width: scaledWidth(0.56),
-      height: scaledHeight(0.05),
-      color: const Color(0xff55847A),
-      alignment: Alignment.center,
-      child: Text("Add to list", style: getTextThemes().bodyMedium),
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        width: scaledWidth(0.56),
+        height: scaledHeight(0.05),
+        color: const Color(0xff55847A),
+        alignment: Alignment.center,
+        child: Text("Add to list", style: getTextThemes().bodyMedium),
+      ),
     );
   }
 }

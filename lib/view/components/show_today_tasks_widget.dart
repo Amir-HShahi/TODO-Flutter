@@ -8,11 +8,13 @@ import 'package:todolist/view_model/to_do_view_model.dart';
 class ShowTodayTasksWidget extends StatelessWidget {
   const ShowTodayTasksWidget({super.key});
 
-  void tapAddToDoHandler() {}
-
   @override
   Widget build(BuildContext context) {
     var viewModel = context.watch<ToDoViewModel>();
+
+    void tapAddToDoHandler() {
+      Navigator.pushNamed(context, "/AddToDoScreen");
+    }
 
     TextTheme getTextThemes() {
       return Theme.of(context).textTheme;

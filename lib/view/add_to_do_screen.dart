@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/model/to_do_model.dart';
 import 'package:todolist/view/components/add_to_list_widget.dart';
 import 'package:todolist/view/components/to_do_input_field_widget.dart';
 import 'package:todolist/view_model/to_do_view_model.dart';
 
 class AddToDoScreen extends StatelessWidget {
-  const AddToDoScreen({super.key});
+  final initialToDoModel = ToDoModel(text: "");
+  AddToDoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     var viewModel = context.watch<ToDoViewModel>();
-    String toDoText = "";
 
     void onChangedHandler(String text) {
-      toDoText += text;
+      initialToDoModel.text = text;
     }
 
     void pressAddToListHandler() {
-      viewModel.addToDo(toDoText);
+      viewModel.addToDo(initialToDoModel.text);
+      Navigator.pop(context);
     }
 
     void tapBackButtonHandler() {
@@ -42,41 +44,42 @@ class AddToDoScreen extends StatelessWidget {
       backgroundColor: const Color(0xffEDEDED),
       body: SafeArea(
           child: Container(
-            width: double.infinity,
-            padding: EdgeInsets.only(
-              left: scaledWidth(0.07),
-              right: scaledWidth(0.07),
-              top: scaledHeight(0.04),
-              bottom: scaledHeight(0.13)),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+        width: double.infinity,
+        padding: EdgeInsets.only(
+            left: scaledWidth(0.07),
+            right: scaledWidth(0.07),
+            top: scaledHeight(0.04),
+            bottom: scaledHeight(0.13)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: scaledHeight(0.02)),
+              Row(
                 children: [
-                  SizedBox(height: scaledHeight(0.02)),
-                  Row(
-                    children: [
-                      GestureDetector(
-                        onTap: tapBackButtonHandler,
-                        child: Image(
-                            image: const AssetImage("assets/images/back_arrow_image.png"),
-                            height: scaledHeight(0.03)),
-                      ),
-                      const Spacer()
-                    ],
+                  GestureDetector(
+                    onTap: tapBackButtonHandler,
+                    child: Image(
+                        image: const AssetImage(
+                            "assets/images/back_arrow_image.png"),
+                        height: scaledHeight(0.03)),
                   ),
-                  SizedBox(height: scaledHeight(0.04)),
-                  Text("Welcome OnBoard!", style: getTextThemes().titleLarge),
-                  SizedBox(height: scaledHeight(0.05)),
-                  Image(
-                      image: const AssetImage("assets/images/add_to_do_image.png"),
-                      height: scaledHeight(0.2)),
-                  SizedBox(height: scaledHeight(0.03)),
-                  Text("Add What your want to do later on..",
-                      style: getTextThemes().titleSmall),
-                  SizedBox(height: scaledHeight(0.04)),
-                  ToDoInputFieldWidget(onChanged: onChangedHandler),
-                  SizedBox(height: scaledHeight(0.2)),
-                  AddToListWidget(onPressed: pressAddToListHandler)
+                  const Spacer()
+                ],
+              ),
+              SizedBox(height: scaledHeight(0.04)),
+              Text("Welcome OnBoard!", style: getTextThemes().titleLarge),
+              SizedBox(height: scaledHeight(0.05)),
+              Image(
+                  image: const AssetImage("assets/images/add_to_do_image.png"),
+                  height: scaledHeight(0.2)),
+              SizedBox(height: scaledHeight(0.03)),
+              Text("Add What your want to do later on..",
+                  style: getTextThemes().titleSmall),
+              SizedBox(height: scaledHeight(0.04)),
+              ToDoInputFieldWidget(onChanged: onChangedHandler),
+              SizedBox(height: scaledHeight(0.2)),
+              AddToListWidget(onPressed: pressAddToListHandler)
             ],
           ),
         ),
