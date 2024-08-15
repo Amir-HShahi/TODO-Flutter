@@ -35,7 +35,7 @@ class DashboardScreen extends StatelessWidget {
                   left: scaledWidth(0.06),
                   right: scaledWidth(0.06),
                   bottom: scaledHeight(0.08),
-                  top: scaledHeight(0.047)),
+                  top: scaledHeight(0.04)),
                 child: Column(
                   children: [
                     SizedBox(height: scaledHeight(0.04)),
