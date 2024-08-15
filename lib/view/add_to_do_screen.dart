@@ -21,7 +21,7 @@ class AddToDoScreen extends StatelessWidget {
     }
 
     void tapBackButtonHandler() {
-
+      Navigator.pop(context);
     }
 
     TextTheme getTextThemes() {
