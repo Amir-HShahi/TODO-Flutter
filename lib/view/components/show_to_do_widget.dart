@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todolist/model/to_do_model.dart';
 
 class ShowToDoWidget extends StatefulWidget {
-  const ShowToDoWidget({super.key});
+  final ToDoModel toDoModel;
+  const ShowToDoWidget({super.key, required this.toDoModel});
 
   @override
   State<ShowToDoWidget> createState() => _ShowToDoWidgetState();
 }
 
 class _ShowToDoWidgetState extends State<ShowToDoWidget> {
-  bool isDone = false;
   void toggleToDoDoneHandler() {
     setState(() {
-      isDone = !isDone;
+      widget.toDoModel.isDone = !widget.toDoModel.isDone;
     });
   }
 
@@ -41,12 +42,14 @@ class _ShowToDoWidgetState extends State<ShowToDoWidget> {
               width: scaledHeight(0.023),
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.black, width: 2),
-                  color: isDone ? const Color(0xff55847A) : Colors.white),
+                  color: widget.toDoModel.isDone
+                      ? const Color(0xff55847A)
+                      : Colors.white),
             ),
             SizedBox(width: scaledWidth(0.04)),
             Expanded(
               child: Text(
-                "toggfjhfhoijbifbvjdfihgvdfpojidfhifpiojpjfdjhbifhihdfnifnble",
+                widget.toDoModel.text,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 10,
                 softWrap: false,

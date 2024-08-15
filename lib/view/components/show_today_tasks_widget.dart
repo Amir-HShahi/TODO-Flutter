@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/main.dart';
 import 'package:todolist/view/components/show_to_do_widget.dart';
+import 'package:todolist/view_model/to_do_view_model.dart';
 
 class ShowTodayTasksWidget extends StatelessWidget {
   const ShowTodayTasksWidget({super.key});
@@ -9,6 +12,8 @@ class ShowTodayTasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var viewModel = context.watch<ToDoViewModel>();
+
     TextTheme getTextThemes() {
       return Theme.of(context).textTheme;
     }
@@ -62,15 +67,12 @@ class ShowTodayTasksWidget extends StatelessWidget {
                 ],
               ),
               SizedBox(height: scaledHeight(0.018)),
-              const Expanded(
+              Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      ShowToDoWidget(),
-                      ShowToDoWidget(),
-                      ShowToDoWidget(),
-                      ShowToDoWidget(),
-                      ShowToDoWidget()
+                      for(var toDoModel in viewModel.getToDoGroup())
+                        ShowToDoWidget(toDoModel: toDoModel)
                     ],
                   ),
                 ),
