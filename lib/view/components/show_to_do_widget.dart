@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/model/to_do_model.dart';
+import 'package:todolist/view_model/to_do_view_model.dart';
 
 class ShowToDoWidget extends StatefulWidget {
   final ToDoModel toDoModel;
@@ -11,14 +13,16 @@ class ShowToDoWidget extends StatefulWidget {
 }
 
 class _ShowToDoWidgetState extends State<ShowToDoWidget> {
-  void toggleToDoDoneHandler() {
-    setState(() {
-      widget.toDoModel.isDone = !widget.toDoModel.isDone;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    var viewModel = context.read<ToDoViewModel>();
+    void toggleToDoDoneHandler() {
+      setState(() {
+        widget.toDoModel.isDone = !widget.toDoModel.isDone;
+        viewModel.saveToDoListData();
+      });
+    }
+
     var screenSize = MediaQuery.of(context).size;
 
     double scaledHeight(double scale) {
