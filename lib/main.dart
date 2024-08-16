@@ -6,6 +6,7 @@ import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/themes.dart';
 import 'package:todolist/view/dashboard_screen.dart';
 import 'package:todolist/view/home_screen.dart';
+import 'package:todolist/view_model/to_do_view_model.dart';
 import 'package:todolist/view_model/user_info_view_model.dart';
 
 void main() async {
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var userInfoViewModel = context.read<UserInfoViewModel>();
     userInfoViewModel.loadUserInfoData();
+
+    var toDoViewModel = context.read<ToDoViewModel>();
+    toDoViewModel.loadToDoData();
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,

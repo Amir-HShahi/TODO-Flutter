@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:todolist/view/components/show_to_do_widget.dart';
 import 'package:todolist/view_model/to_do_view_model.dart';
 
-class ShowTodayTasksWidget extends StatelessWidget {
-  const ShowTodayTasksWidget({super.key});
+class ShowDailyTasksWidget extends StatelessWidget {
+  const ShowDailyTasksWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

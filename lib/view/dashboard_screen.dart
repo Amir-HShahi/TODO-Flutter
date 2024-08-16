@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todolist/view/components/show_today_tasks_widget.dart';
+import 'package:todolist/view/components/show_daily_tasks_widget.dart';
 import 'package:todolist/view_model/user_info_view_model.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -65,7 +65,7 @@ class DashboardScreen extends StatelessWidget {
                     image: const AssetImage(
                         "assets/images/dashboard_middle_image.png"),
                     height: scaledHeight(0.29)),
-                const ShowTodayTasksWidget()
+                const ShowDailyTasksWidget()
               ],
             ),
           ))
