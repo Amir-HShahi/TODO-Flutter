@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:todolist/model/user_info_model.dart';
 import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/view_model/utility/empty_input_exception.dart';
@@ -56,9 +57,9 @@ class UserInfoViewModel with ChangeNotifier {
 
     if (pickedImage != null) {
       imageFile = File(pickedImage.path);
+      _saveImage(imageFile);
     }
     _setProfileImage(imageFile != null ? FileImage(imageFile) : null);
-    saveUserInfoData();
     notifyListeners();
   }
 
@@ -90,6 +91,23 @@ class UserInfoViewModel with ChangeNotifier {
     UserInfoModel loadedModel =
         UserInfoModel.fromJson(jsonDecode(mappedUserInfo!));
     _userInfoModel = loadedModel;
+    _loadImage();
     notifyListeners();
+  }
+
+  Future<void> _saveImage(File imageFile) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final imagePath = '${directory.path}/profileImage.jpg';
+    await imageFile.copy(imagePath);
+  }
+
+  Future<void> _loadImage() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final imagePath = '${directory.path}/profileImage.jpg';
+      _setProfileImage(FileImage(File(imagePath)));
+    } catch(e) {
+      //image not found
+    }
   }
 }
