@@ -58,6 +58,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 SizedBox(height: scaledHeight(0.02)),
                 Text("Welcome ${viewModel.getFullName()}!",
+                    textAlign: TextAlign.center,
                     style: getTextThemes().titleLarge),
                 SizedBox(height: scaledHeight(0.01)),
                 Image(

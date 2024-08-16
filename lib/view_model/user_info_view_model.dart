@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todolist/model/user_info_model.dart';
+import 'package:todolist/view_model/utility/empty_input_exception.dart';
 
 class UserInfoViewModel with ChangeNotifier {
   final UserInfoModel _userInfoModel = UserInfoModel(
@@ -18,14 +19,26 @@ class UserInfoViewModel with ChangeNotifier {
   }
 
   void setFullName(String name) {
+    if(name.isEmpty) {
+      throw EmptyInputException("Name can't be empty");
+    }
     _userInfoModel.fullName = name;
   }
 
   void setEmail(String email) {
+    if(email.isEmpty) {
+      throw EmptyInputException("Email can't be empty");
+    }
     _userInfoModel.email = email;
   }
 
   void setPassword(String password, String confirmPassword) {
+    if(password.isEmpty) {
+      throw EmptyInputException("Password can't be empty");
+    }
+    if(confirmPassword.isEmpty) {
+      throw EmptyInputException("Confirm Password can't be empty");
+    }
     _userInfoModel.password = password;
   }
 

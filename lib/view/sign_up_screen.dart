@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/services/toast_messenger.dart';
 import 'package:todolist/view/components/text_fields.dart';
+import 'package:todolist/view_model/utility/empty_input_exception.dart';
 
 import '../view_model/user_info_view_model.dart';
 
@@ -13,9 +15,13 @@ class SignUpScreen extends StatelessWidget {
 
   void signUpHandler(BuildContext context) {
     var viewModel = context.read<UserInfoViewModel>();
-    viewModel.signUpUser(nameController.text, emailController.text,
-        passwordController.text, confirmPasswordController.text);
-    Navigator.pushNamed(context, "/DashboardScreen");
+    try {
+      viewModel.signUpUser(nameController.text, emailController.text,
+          passwordController.text, confirmPasswordController.text);
+      Navigator.pushNamed(context, "/DashboardScreen");
+    } on EmptyInputException catch (e) {
+      sendToastMessage(e.cause);
+    }
   }
 
   void signInHandler(BuildContext context) {}
