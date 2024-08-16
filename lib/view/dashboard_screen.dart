@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/view/components/show_today_tasks_widget.dart';
+import 'package:todolist/view_model/user_info_view_model.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var viewModel = context.watch<UserInfoViewModel>();
+
     TextTheme getTextThemes() {
       return Theme.of(context).textTheme;
     }
@@ -41,7 +45,7 @@ class DashboardScreen extends StatelessWidget {
                     SizedBox(height: scaledHeight(0.04)),
                     Container(height: scaledHeight(0.11), width: scaledWidth(0.25), color: Colors.black),
                     SizedBox(height: scaledHeight(0.02)),
-                    Text("Welcome Fisayomi!", style: getTextThemes().titleLarge),
+                    Text("Welcome ${viewModel.getFullName()}!", style: getTextThemes().titleLarge),
                     SizedBox(height: scaledHeight(0.01)),
                     Image(image: const AssetImage("assets/images/dashboard_middle_image.png"), height: scaledHeight(0.29)),
                     const ShowTodayTasksWidget()
