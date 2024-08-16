@@ -1,8 +1,10 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todolist/model/user_info_model.dart';
+import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/view_model/utility/empty_input_exception.dart';
 import 'package:todolist/view_model/utility/not_matching_password_exception.dart';
 
@@ -17,6 +19,11 @@ class UserInfoViewModel with ChangeNotifier {
     setFullName(fullName);
     setEmail(email);
     setPassword(password, confirmPassword);
+    saveUserInfoData();
+  }
+
+  void saveUserInfoData() async {
+    saveKeyValue("userInfo", jsonEncode(_userInfoModel.toJson()));
   }
 
   void setFullName(String name) {
@@ -55,6 +62,7 @@ class UserInfoViewModel with ChangeNotifier {
       imageFile = File(pickedImage.path);
     }
     _setProfileImage(imageFile != null ? FileImage(imageFile) : null);
+    saveUserInfoData();
     notifyListeners();
   }
 
