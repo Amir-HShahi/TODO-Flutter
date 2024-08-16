@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todolist/services/toast_messenger.dart';
 import 'package:todolist/view/components/text_fields.dart';
 import 'package:todolist/view_model/utility/empty_input_exception.dart';
+import 'package:todolist/view_model/utility/not_matching_password_exception.dart';
 
 import '../view_model/user_info_view_model.dart';
 
@@ -20,6 +21,8 @@ class SignUpScreen extends StatelessWidget {
           passwordController.text, confirmPasswordController.text);
       Navigator.pushNamed(context, "/DashboardScreen");
     } on EmptyInputException catch (e) {
+      sendToastMessage(e.cause);
+    } on NotMatchingPasswordException catch (e) {
       sendToastMessage(e.cause);
     }
   }
