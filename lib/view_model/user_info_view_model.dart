@@ -37,6 +37,7 @@ class UserInfoViewModel with ChangeNotifier {
       imageFile = File(pickedImage.path);
     }
     _setProfileImage(imageFile != null ? FileImage(imageFile) : null);
+    notifyListeners();
   }
 
   void _setProfileImage(ImageProvider? image) {

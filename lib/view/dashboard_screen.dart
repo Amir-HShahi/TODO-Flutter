@@ -10,6 +10,10 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var viewModel = context.watch<UserInfoViewModel>();
 
+    void editProfileImageHandler() {
+      viewModel.setProfileImageFromGallery();
+    }
+
     TextTheme getTextThemes() {
       return Theme.of(context).textTheme;
     }
@@ -43,11 +47,14 @@ class DashboardScreen extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: scaledHeight(0.04)),
-                CircleAvatar(
-                  radius: scaledHeight(0.05),
-                  backgroundImage: const AssetImage(
-                      "assets/images/default_profile_image.jpg"),
-                  foregroundImage: viewModel.getProfileImage(),
+                GestureDetector(
+                  onTap: editProfileImageHandler,
+                  child: CircleAvatar(
+                    radius: scaledHeight(0.05),
+                    backgroundImage: const AssetImage(
+                        "assets/images/default_profile_image.jpg"),
+                    foregroundImage: viewModel.getProfileImage(),
+                  ),
                 ),
                 SizedBox(height: scaledHeight(0.02)),
                 Text("Welcome ${viewModel.getFullName()}!",
