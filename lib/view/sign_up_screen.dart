@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todolist/view/components/text_fields.dart';
+
+import '../view_model/user_info_view_model.dart';
 
 class SignUpScreen extends StatelessWidget {
   final nameController = TextEditingController();
@@ -7,6 +10,19 @@ class SignUpScreen extends StatelessWidget {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   SignUpScreen({super.key});
+
+  void signUpHandler(BuildContext context) {
+    var viewModel = context.read<UserInfoViewModel>();
+    viewModel.signUpUser(nameController.text, emailController.text,
+        passwordController.text, confirmPasswordController.text);
+    Navigator.pushNamed(context, "/DashboardScreen");
+  }
+
+  void signInHandler(BuildContext context) {}
+
+  void backIconHandler(BuildContext context) {
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,15 +124,5 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void signUpHandler(BuildContext context) {
-    Navigator.pushNamed(context, "/DashboardScreen");
-  }
-
-  void signInHandler(BuildContext context) {}
-
-  void backIconHandler(BuildContext context) {
-    Navigator.pop(context);
   }
 }
