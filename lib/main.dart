@@ -2,21 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todolist/providers.dart';
 import 'package:todolist/routes.dart';
+import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/themes.dart';
+import 'package:todolist/view/dashboard_screen.dart';
 import 'package:todolist/view/home_screen.dart';
 import 'package:todolist/view_model/user_info_view_model.dart';
 
-void main() {
+void main() async {
+  //check if sign up completed
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await getSharedPreferences();
+  bool isSignUpCompleted =
+      prefs.getString("isSignUpCompleted") == "true" ? true : false;
+
   runApp(
     MultiProvider(
       providers: providersData,
-      child: const MyApp(),
+      child: MyApp(isSignUpCompleted: isSignUpCompleted),
     ),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool isSignUpCompleted;
+  const MyApp({super.key, required this.isSignUpCompleted});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themesData,
-      home: const HomeScreen(),
+      home: isSignUpCompleted ? const DashboardScreen() : const HomeScreen(),
       routes: routesData,
     );
   }

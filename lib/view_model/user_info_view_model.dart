@@ -9,7 +9,6 @@ import 'package:todolist/view_model/utility/empty_input_exception.dart';
 import 'package:todolist/view_model/utility/not_matching_password_exception.dart';
 
 class UserInfoViewModel with ChangeNotifier {
-  bool _isDataLoaded = false;
   UserInfoModel _userInfoModel = UserInfoModel(
       fullName: "initialName",
       email: "initialEmail",

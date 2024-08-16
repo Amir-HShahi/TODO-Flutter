@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/services/toast_messenger.dart';
 import 'package:todolist/view/components/text_fields.dart';
 import 'package:todolist/view_model/utility/empty_input_exception.dart';
@@ -20,6 +21,7 @@ class SignUpScreen extends StatelessWidget {
       viewModel.signUpUser(nameController.text, emailController.text,
           passwordController.text, confirmPasswordController.text);
       Navigator.pushNamed(context, "/DashboardScreen");
+      saveKeyValue("isSignUpCompleted", "true");
     } on EmptyInputException catch (e) {
       sendToastMessage(e.cause);
     } on NotMatchingPasswordException catch (e) {
