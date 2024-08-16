@@ -4,6 +4,7 @@ import 'package:todolist/providers.dart';
 import 'package:todolist/routes.dart';
 import 'package:todolist/themes.dart';
 import 'package:todolist/view/home_screen.dart';
+import 'package:todolist/view_model/user_info_view_model.dart';
 
 void main() {
   runApp(
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userInfoViewModel = context.read<UserInfoViewModel>();
+    userInfoViewModel.loadUserInfoData();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: themesData,

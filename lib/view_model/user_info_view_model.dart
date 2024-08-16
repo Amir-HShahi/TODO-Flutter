@@ -9,7 +9,8 @@ import 'package:todolist/view_model/utility/empty_input_exception.dart';
 import 'package:todolist/view_model/utility/not_matching_password_exception.dart';
 
 class UserInfoViewModel with ChangeNotifier {
-  final UserInfoModel _userInfoModel = UserInfoModel(
+  bool _isDataLoaded = false;
+  UserInfoModel _userInfoModel = UserInfoModel(
       fullName: "initialName",
       email: "initialEmail",
       password: "initialPassword");
@@ -20,10 +21,6 @@ class UserInfoViewModel with ChangeNotifier {
     setEmail(email);
     setPassword(password, confirmPassword);
     saveUserInfoData();
-  }
-
-  void saveUserInfoData() async {
-    saveKeyValue("userInfo", jsonEncode(_userInfoModel.toJson()));
   }
 
   void setFullName(String name) {
@@ -82,5 +79,18 @@ class UserInfoViewModel with ChangeNotifier {
 
   ImageProvider? getProfileImage() {
     return _userInfoModel.profileImage;
+  }
+
+  void saveUserInfoData() async {
+    saveKeyValue("userInfoModel", jsonEncode(_userInfoModel.toJson()));
+  }
+
+  void loadUserInfoData() async {
+    final prefs = await getSharedPreferences();
+    String? mappedUserInfo = prefs.getString("userInfoModel");
+    UserInfoModel loadedModel =
+        UserInfoModel.fromJson(jsonDecode(mappedUserInfo!));
+    _userInfoModel = loadedModel;
+    notifyListeners();
   }
 }
