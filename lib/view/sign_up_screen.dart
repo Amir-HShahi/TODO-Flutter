@@ -5,6 +5,7 @@ class SignUpScreen extends StatelessWidget {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
   SignUpScreen({super.key});
 
   @override
@@ -54,10 +55,18 @@ class SignUpScreen extends StatelessWidget {
                 ),
 
                 //Text fields
-                const SignStyledTextField(hintText: "Enter your Full Name"),
-                const SignStyledTextField(hintText: "Enter your Email address"),
-                const SignStyledTextField(hintText: "Create a Password"),
-                const SignStyledTextField(hintText: "Confirm your Password"),
+                SignStyledTextField(
+                    hintText: "Enter your Full Name",
+                    controller: nameController),
+                SignStyledTextField(
+                    hintText: "Enter your Email address",
+                    controller: emailController),
+                SignStyledTextField(
+                    hintText: "Create a Password",
+                    controller: passwordController),
+                SignStyledTextField(
+                    hintText: "Confirm your Password",
+                    controller: confirmPasswordController),
 
                 SizedBox(
                   height: sHeight / 9.3,

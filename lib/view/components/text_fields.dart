@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class SignStyledTextField extends StatelessWidget {
   final String hintText;
+  final TextEditingController controller;
 
-  const SignStyledTextField({super.key, required this.hintText});
+  const SignStyledTextField(
+      {super.key, required this.hintText, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +18,7 @@ class SignStyledTextField extends StatelessWidget {
             width: size.width / 1.14,
             height: size.height / 16.88,
             child: TextField(
+              controller: controller,
               textDirection: TextDirection.ltr,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
