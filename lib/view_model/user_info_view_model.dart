@@ -33,4 +33,8 @@ class UserInfoViewModel with ChangeNotifier {
   String getEmail() {
     return _userInfoModel.email;
   }
+
+  ImageProvider? getProfileImage() {
+    return _userInfoModel.profileImage;
+  }
 }

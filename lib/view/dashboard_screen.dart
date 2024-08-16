@@ -34,23 +34,31 @@ class DashboardScreen extends StatelessWidget {
           ),
           SafeArea(
               child: Container(
-                width: double.infinity,
-                padding: EdgeInsets.only(
-                  left: scaledWidth(0.06),
-                  right: scaledWidth(0.06),
-                  bottom: scaledHeight(0.08),
-                  top: scaledHeight(0.04)),
-                child: Column(
-                  children: [
-                    SizedBox(height: scaledHeight(0.04)),
-                    Container(height: scaledHeight(0.11), width: scaledWidth(0.25), color: Colors.black),
-                    SizedBox(height: scaledHeight(0.02)),
-                    Text("Welcome ${viewModel.getFullName()}!", style: getTextThemes().titleLarge),
-                    SizedBox(height: scaledHeight(0.01)),
-                    Image(image: const AssetImage("assets/images/dashboard_middle_image.png"), height: scaledHeight(0.29)),
-                    const ShowTodayTasksWidget()
-                  ],
+            width: double.infinity,
+            padding: EdgeInsets.only(
+                left: scaledWidth(0.06),
+                right: scaledWidth(0.06),
+                bottom: scaledHeight(0.08),
+                top: scaledHeight(0.04)),
+            child: Column(
+              children: [
+                SizedBox(height: scaledHeight(0.04)),
+                CircleAvatar(
+                  radius: scaledHeight(0.05),
+                  backgroundImage: const AssetImage("assets/images/default_profile_image.jpg"),
+                  foregroundImage: viewModel.getProfileImage(),
                 ),
+                SizedBox(height: scaledHeight(0.02)),
+                Text("Welcome ${viewModel.getFullName()}!",
+                    style: getTextThemes().titleLarge),
+                SizedBox(height: scaledHeight(0.01)),
+                Image(
+                    image: const AssetImage(
+                        "assets/images/dashboard_middle_image.png"),
+                    height: scaledHeight(0.29)),
+                const ShowTodayTasksWidget()
+              ],
+            ),
           ))
         ],
       ),
