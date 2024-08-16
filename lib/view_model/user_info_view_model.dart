@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:todolist/model/user_info_model.dart';
 
 class UserInfoViewModel with ChangeNotifier {
@@ -24,6 +27,22 @@ class UserInfoViewModel with ChangeNotifier {
 
   void setPassword(String password, String confirmPassword) {
     _userInfoModel.password = password;
+  }
+
+  Future<void> setProfileImageFromGallery() async {
+    File? imageFile;
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      imageFile = File(pickedImage.path);
+    }
+    _setProfileImage(imageFile != null ? FileImage(imageFile) : null);
+  }
+
+  void _setProfileImage(ImageProvider? image) {
+    if(image != null) {
+      _userInfoModel.profileImage = image;
+    }
   }
 
   String getFullName() {

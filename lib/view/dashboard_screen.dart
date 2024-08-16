@@ -45,7 +45,8 @@ class DashboardScreen extends StatelessWidget {
                 SizedBox(height: scaledHeight(0.04)),
                 CircleAvatar(
                   radius: scaledHeight(0.05),
-                  backgroundImage: const AssetImage("assets/images/default_profile_image.jpg"),
+                  backgroundImage: const AssetImage(
+                      "assets/images/default_profile_image.jpg"),
                   foregroundImage: viewModel.getProfileImage(),
                 ),
                 SizedBox(height: scaledHeight(0.02)),
