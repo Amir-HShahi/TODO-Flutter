@@ -9,7 +9,7 @@ class ToDoViewModel with ChangeNotifier {
   }
 
   void addToDo(String text) {
-    _toDoGroup.add(ToDoModel(text: text));
+    _toDoGroup.add(ToDoModel(text: text, isDone: false));
     notifyListeners();
   }
 }
