@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/gen/assets.gen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -20,7 +21,7 @@ class HomeScreen extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(
                     sWidth / 15.6, sHeight / 8.44, sWidth / 15.6, 0),
                 child: Image.asset(
-                  "assets/images/homeImg.png",
+                  Assets.images.homeImg.path,
                   width: sWidth / 1.13,
                   height: sHeight / 3.32,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/gen/assets.gen.dart';
 import 'package:todolist/services/shared_preferences.dart';
 import 'package:todolist/services/toast_messenger.dart';
 import 'package:todolist/view/components/text_fields.dart';
@@ -58,8 +59,8 @@ class SignUpScreen extends StatelessWidget {
                     children: [
                       IconButton(
                           onPressed: () => backIconHandler(context),
-                          icon: const ImageIcon(
-                            AssetImage("assets/images/back_arrow_image.png"),
+                          icon: ImageIcon(
+                            AssetImage(Assets.images.backArrowImage.path),
                             size: 34,
                           )),
                     ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todolist/gen/assets.gen.dart';
 import 'package:todolist/view/components/show_daily_tasks_widget.dart';
 import 'package:todolist/view_model/user_info_view_model.dart';
 
@@ -33,7 +34,8 @@ class DashboardScreen extends StatelessWidget {
       body: Stack(
         children: [
           Image(
-            image: const AssetImage("assets/images/dashboard_header_image.png"),
+            // image: const AssetImage("assets/images/dashboard_header_image.png"),
+            image: AssetImage(Assets.images.dashboardHeaderImage.path),
             width: scaledWidth(1),
           ),
           SafeArea(
@@ -51,8 +53,8 @@ class DashboardScreen extends StatelessWidget {
                   onTap: editProfileImageHandler,
                   child: CircleAvatar(
                     radius: scaledHeight(0.05),
-                    backgroundImage: const AssetImage(
-                        "assets/images/default_profile_image.jpg"),
+                    backgroundImage:  AssetImage(
+                        Assets.images.defaultProfileImage.path),
                     foregroundImage: viewModel.getProfileImage(),
                   ),
                 ),
@@ -62,8 +64,8 @@ class DashboardScreen extends StatelessWidget {
                     style: getTextThemes().titleLarge),
                 SizedBox(height: scaledHeight(0.01)),
                 Image(
-                    image: const AssetImage(
-                        "assets/images/dashboard_middle_image.png"),
+                    image: AssetImage(
+                        Assets.images.dashboardMiddleImage.path),
                     height: scaledHeight(0.29)),
                 const ShowDailyTasksWidget()
               ],
